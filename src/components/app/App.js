@@ -7,6 +7,7 @@ import CharInfo from "../charInfo/CharInfo";
 import decoration from '../../resources/img/vision.png';
 import ErrorBoundary from "../errorBoundary/ErrorBoundry";
 
+
 class App extends Component{
    state = {
        selectedChar: null
@@ -42,5 +43,7 @@ class App extends Component{
         )
     }
 }
+
+
 
 export default App;
