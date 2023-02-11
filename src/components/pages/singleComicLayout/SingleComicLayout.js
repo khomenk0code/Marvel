@@ -14,7 +14,7 @@ const SingleComicLayout = ({data}) => {
                     name="description"
                     content={`${title} comics book`}
                 />
-                 <title>{title}</title>
+                <title>{title}</title>
             </Helmet>
             <img src={thumbnail} alt={title} className="single-comic__img"/>
             <div className="single-comic__info">
