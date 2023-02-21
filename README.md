@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# SPA application on the subject of MARVEL characters and magazines.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### List of technologies involved
+- React.js, react-router-dom, react-transition
+- CSS modules, Styled Components, Grid CSS
 
-## Available Scripts
+### About the application
+The main idea of the application is to display to the user information about the characters and logs, the data of which comes from real-time requests from a remote server.
+This application is a **_single page application_**, where the UI part is developed on **_React_**. Interaction occurs with a third-party open API provided by Marvel Studios.
+Information can be provided in the form of list pages, individual item pages, character search results.
 
-In the project directory, you can run:
+### General technical details
+- Interaction with the subsequent processing and display of data on the open [Mavrel API](https://developer.marvel.com/) with the databases of this film studio has been built.
+- Implemented portal routing without reloads (react-router-dom)
+- Implemented utilities for obtaining data, conditional rendering, depending on the type of application page.
+- On the MainPage.js page, all components are wrapped in ErrorBoundary.js
+- In App.js app pages are loaded lazily via React.lazy & Suspense
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### The structure of the UI part.
+The application is represented by pages: MainPage, ComicPage, SinglePage (for both comics and characters), 404.
+#### More about MainPage.
+Consists of components:
+- RandomChar: every 60 seconds or on click, a random character is requested by a randomly generated ID. You can go to the character page.
+- CharList: characters coming from the Marvel API are displayed in portions of 9 elements. There is Pagination - loading characters on click. By clicking on any character, information about him will be displayed in the sidebar. The React Transition library is used to animate the cards.
+For a chunked data request, the UseGetAllCharactersQuery hook from apiChar is used. Hook at each change of state _offset_ requests a new portion of characters.
+- CharInfo: A sidebar that displays information about the selected character. The information is queried by the Marvel API when the user clicks on the corresponding character in the CharList. Information: name, short description (max 210 characters), as well as a list of comics (by clicking on any of them, you will go to the page of the corresponding comic).
+- CharSearchForm: Formik and Yup libraries are involved. This is a form to search for the desired character in the Marvel API database. If the character is found, you will be prompted to go to the page about him. Otherwise, it will be reported on its absence.
+#### More on ComicPage
+Comic book list page. Card data comes from the Marvel API. By clicking on any of the cards, by ID, information about the comic will be requested and the user will go to the generated page.
+ 
