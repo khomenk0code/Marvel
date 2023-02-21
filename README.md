@@ -1,4 +1,4 @@
-# SPA application on the subject of MARVEL characters and comics.
+# SPA on the subject of MARVEL characters and comics.
 
 ### List of technologies involved
 - React.js, react-router-dom, react-transition
